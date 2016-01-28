@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Poll Recs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @poll_recs.each do |poll_rec| %>
+      <tr>
+        <td><%= link_to 'Show', poll_rec %></td>
+        <td><%= link_to 'Edit', edit_poll_rec_path(poll_rec) %></td>
+        <td><%= link_to 'Destroy', poll_rec, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Poll rec', new_poll_rec_path %>

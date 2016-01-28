@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
   devise_for :users
   resources :users
+  get 'poll_recs/show_count/:id', to: 'poll_recs#show_count'
+  get 'poll_recs/show_countCP/:id', to: 'poll_recs#show_countCP'
+  get 'poll_recs/show_countByCP/:id/:cp', to: 'poll_recs#show_countByCP'
+
 end

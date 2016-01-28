@@ -1,0 +1,21 @@
+<%= form_for(@count_cp) do |f| %>
+  <% if @count_cp.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@count_cp.errors.count, "error") %> prohibited this count_cp from being saved:</h2>
+
+      <ul>
+      <% @count_cp.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cp %><br>
+    <%= f.number_field :cp %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
