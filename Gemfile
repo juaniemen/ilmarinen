@@ -25,7 +25,18 @@ group :development do
   gem 'rails_layout'
   gem 'spring-commands-rspec'
 end
+<<<<<<< HEAD
 
+=======
+group :development do
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+end
+gem 'puma'
+>>>>>>> d93f893e1cf31a9e5657260f17e5d4577c7344f0
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
