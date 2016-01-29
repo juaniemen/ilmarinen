@@ -5,17 +5,19 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: mysql2
+  adapter: postgresql
+  host: localhost
   pool: 5
   timeout: 5000
-  username: root
-  password: root
-  port: 3306
+  username: postgres
+  password: postgres
+
+
 
   
 development:
   <<: *default
-  database: db/development.sql
+  database: db/development
 
 
 # Warning: The database defined as "test" will be erased and
@@ -23,8 +25,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sql
+  database: db/test
 
 production:
   <<: *default
-  database: db/production.sql
+  database: db/production

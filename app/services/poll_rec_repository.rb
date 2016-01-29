@@ -4,18 +4,18 @@ class PollRecRepository
   end
 
   def self.opcionesDistintasPorPreguntaYVotacion(votacionId, pregunta)
-    Answer.where({vote: Vote.where({poll_id: votacionId}) ,question: pregunta}).group(:option)
+    Answer.where({vote: Vote.where({poll_id: votacionId}) ,question: pregunta}).group(:id).group(:option)
     #opciones distintas para una determinada pregunta
   end
 
   def self.opcionesDistintasPorPreguntaVotacionYCP(votacionId, pregunta, cp)
-    Answer.where({vote: Vote.where({poll_id: votacionId, cp: cp}) ,question: pregunta}).group(:option)
+    Answer.where({vote: Vote.where({poll_id: votacionId, cp: cp}) ,question: pregunta}).group(:id).group(:option)
     #opciones distintas para una determinada pregunta
   end
 
   def self.preguntasDistinstasPorVotacion(votacionId)  #Devuelve lista de :question
     ret = []
-    Answer.where({vote: Vote.where({poll_id: votacionId})}).group(:question).each do |quest|
+    Answer.where({vote: Vote.where({poll_id: votacionId})}).group(:id).group(:question).each do |quest|
       ret << quest.question
     end
     ret
@@ -23,7 +23,7 @@ class PollRecRepository
 
   def self.cpsDistintosPorVotacion(votacionId)  #Devuelve lista de :cp
     ret = []
-    Vote.where({poll_id: votacionId}).group(:cp).each do |vote|
+    Vote.where({poll_id: votacionId}).group(:id).group(:cp).each do |vote|
       ret << vote.cp
     end
     ret
@@ -52,7 +52,7 @@ class PollRecRepository
   def self.recuentaParaUnaDeterminadaPregunta(votacionId, pregunta)
     ret = Hash.new
     opcionesDistintasPorPreguntaYVotacion(votacionId, pregunta).each do |ans|
-        ret[ans.option] = Answer.where( {option: ans.option} ).count
+        ret[ans.option] = Answer.where( {option: ans.option, vote: Vote.where({poll_id: votacionId})} ).count
     end
     return ret #No es necesario el return
   end
@@ -60,7 +60,7 @@ class PollRecRepository
   def self.recuentaParaUnaDeterminadaPreguntaPorCP(votacionId, pregunta, cp)
     ret = Hash.new
     opcionesDistintasPorPreguntaVotacionYCP(votacionId, pregunta, cp).each do |ans|
-      ret[ans.option] = Answer.where( {option: ans.option} ).count
+      ret[ans.option] = Answer.where( {option: ans.option, vote: Vote.where({poll_id: votacionId, cp: cp})} ).count
     end
     ret
   end
@@ -102,6 +102,7 @@ class PollRecRepository
 
   def self.recuentaVotosDEFINITIVO(votacionId)
     ret = Hash.new
+
     preguntasDistinstasPorVotacion(votacionId).each do |preg|
       ret[preg] = recuentaParaUnaDeterminadaPregunta(votacionId, preg)
     end

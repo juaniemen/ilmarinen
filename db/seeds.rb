@@ -17,6 +17,7 @@ voto1 = Vote.create( { cp: 41012, answers: [], poll: votacion})
 voto2 = Vote.create( { cp: 41013, answers: [], poll: votacion})
 voto3 = Vote.create( { cp: 41013, answers: [], poll: votacion})
 voto4 = Vote.create( { cp: 41011, answers: [], poll: votacion})
+voto5 = Vote.create( { cp: 41013, answers: [], poll: votacion})
 
 
 answer1 = Answer.create({ question: '¿Cuál es tu intencion de voto?', option: 'Podemos', vote: voto1 })
@@ -37,6 +38,10 @@ answer9 = Answer.create({ question: '¿Cuál es el candidato que menos te gusta?
 answer10 = Answer.create({ question: '¿Cuál es tu intencion de voto?', option: 'PSOE', vote: voto4 })
 answer11 = Answer.create({ question: '¿Podrías evaluar del 1 al 10 a los actuales políticos?', option: '1', vote: voto4 })
 answer12 = Answer.create({ question: '¿Cuál es el candidato que menos te gusta?', option: 'Mariano Rajoy', vote: voto4 })
+
+answer13 = Answer.create({ question: '¿Cuál es tu intencion de voto?', option: 'PSOE', vote: voto5 })
+answer14 = Answer.create({ question: '¿Podrías evaluar del 1 al 10 a los actuales políticos?', option: '1', vote: voto5 })
+answer15 = Answer.create({ question: '¿Cuál es el candidato que menos te gusta?', option: 'Mariano Rajoy', vote: voto5 })
 
 
 
