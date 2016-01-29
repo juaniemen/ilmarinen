@@ -103,7 +103,7 @@ class PollRecRepository
   def self.recuentaVotosDEFINITIVO(votacionId)
     ret = Hash.new
     preguntasDistinstasPorVotacion(votacionId).each do |preg|
-      ret[preg.question] = recuentaParaUnaDeterminadaPregunta(votacionId, preg.question)
+      ret[preg] = recuentaParaUnaDeterminadaPregunta(votacionId, preg)
     end
     a = guardarPollRec(ret, Poll.find(votacionId).name)
     [ret, a]
@@ -142,6 +142,14 @@ class PollRecRepository
     preguntasDistinstasPorVotacionYCp(votacionId, cp).each do |preg|
       st = [preg.question, cp]
       ret[st] = recuentaParaUnaDeterminadaPreguntaPorCP(votacionId, preg.question, cp)
+    end
+    ret
+  end
+
+  def self.devuelvePollNamePollId
+    ret = []
+    Poll.all.each do |poll|
+      ret << poll.attributes
     end
     ret
   end

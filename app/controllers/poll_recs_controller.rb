@@ -63,7 +63,7 @@ class PollRecsController < ApplicationController
   end
 
   def show_count
-    PollRecRepository.recuentaVotosDEFINITIVO(params[:id])
+    n= PollRecRepository.recuentaVotosDEFINITIVO(params[:id])
     @res = n[0]
     @res
     render json: @res
@@ -78,6 +78,12 @@ class PollRecsController < ApplicationController
 
   def show_countByCP
     @res = PollRecRepository.recuentaVotosDEFINITIVOconCPdeterminado(params[:id], params[:cp])
+    @res
+    render json: @res
+  end
+
+  def show_polls
+    @res = PollRecRepository.devuelvePollNamePollId
     @res
     render json: @res
   end
