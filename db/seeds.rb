@@ -6,11 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = User.create({email: 'admin@admin.com', password: 'admin', password_confirmation: 'admin', name: 'admin'})
-puts 'CREATED ADMIN USER: ' << user.email << user.id
+
 
 
 votacion = Poll.create({ name: 'Encuesta 1', votes: []})
-puts 'CREATED VOTACIÓN con nombre:' << votacion.name << 'e id: ' << votacion.id.to_s
 
 
 voto1 = Vote.create( { cp: 41012, answers: [], poll: votacion})
